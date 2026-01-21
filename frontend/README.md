@@ -1,73 +1,146 @@
-# React + TypeScript + Vite
+# SendLater Pro – Frontend (React Dashboard)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend dashboard for the SendLater Pro / ReachInbox Email Scheduler assignment.
 
-Currently, two official plugins are available:
+The frontend is built using React + TypeScript and provides a clean UI to:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+View Scheduled Emails
 
-## React Compiler
+View Sent / Failed Emails
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Schedule new emails (via backend APIs)
 
-## Expanding the ESLint configuration
+It communicates with the backend via REST APIs.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+#  Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+React.js (Vite)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+TypeScript
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React Router DOM
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Axios
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+(Styling can be Tailwind / CSS – optional)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Project Structure
+frontend/
+├── src/
+│   ├── api/          # API calls (axios)
+│   ├── components/   # Reusable UI components
+│   ├── pages/        # Pages (Dashboard, Scheduled, Sent)
+│   ├── types/        # TypeScript interfaces
+│   ├── utils/
+│   ├── App.tsx
+│   └── main.tsx
+├── index.html
+├── package.json
+├── tsconfig.json
+└── README.md
+
+# Prerequisites
+
+Before running the frontend, make sure:
+
+Backend is running on:
+
+http://localhost:4000
+
+
+Node.js version 18+ is installed
+
+▶️ How to Run Frontend
+1️⃣ Install dependencies
+
+From the frontend folder:
+
+npm install
+
+2️⃣ Start development server
+npm run dev
+
+
+You should see output like:
+
+Local: http://localhost:5173
+
+
+# Open in browser:
+
+http://localhost:5173
+
+🔗 Backend Integration
+
+The frontend communicates with the backend using Axios.
+
+Base URL configuration:
+
+http://localhost:4000
+
+
+Make sure the backend server and worker are running:
+
+cd backend
+npm run dev
+npm run worker
+
+📡 Available Pages
+Route	Description
+/	Dashboard
+/scheduled	View scheduled emails
+/sent	View sent / failed emails
+
+# API Endpoints Used
+
+GET /emails/scheduled → Fetch scheduled emails
+
+GET /emails/sent → Fetch sent / failed emails
+
+POST /emails/schedule → Schedule new emails
+
+# Environment Variables
+
+The frontend does not require secrets for basic functionality.
+
+If environment variables are added later (e.g. Google OAuth), use:
+
+.env.example
+
+
+and never commit .env.
+
+# Development Notes
+
+The frontend expects backend responses in JSON format
+
+Loading and empty states are handled at UI level
+
+Email scheduling logic is fully handled by backend
+
+This frontend focuses on clarity and usability, not heavy UI animations
+
+# Status
+
+✔ Frontend setup complete
+✔ Backend integration working
+✔ Ready for UI polish & OAuth integration
+
+# Next Enhancements (Optional)
+
+Google OAuth login
+
+CSV upload for email lists
+
+Compose Email modal
+
+Better table UI & pagination
+
+Toast notifications
+
+🏁 Final Notes
+
+This frontend is designed to be simple, clean, and easy to evaluate for the ReachInbox hiring assignment.
+
+For backend setup and architecture details, refer to:
 ```
