@@ -63,7 +63,7 @@ npm run dev
 
 You should see output like:
 
-Local: http://localhost:5174
+Local: http://localhost:5173
 
 
 # Open in browser:
